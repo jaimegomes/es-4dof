@@ -23,7 +23,6 @@ public class PrincipalView extends JFrame {
 	private JMenuBar menuBar;
 	private JMenu mnUsuarios;
 	private JMenuItem mnitCadastro;
-	
 
 	/**
 	 * Launch the application.
@@ -48,7 +47,7 @@ public class PrincipalView extends JFrame {
 		setForeground(Color.BLUE);
 		setTitle("::ES-4DoF:: Enterprise System - 4 Do Fast");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -77,11 +76,11 @@ public class PrincipalView extends JFrame {
 			}
 		});
 
+		// adiciona itens ao menu usuário
 		mnUsuarios.add(mnitCadastro);
-		// adiciona o menu Usuários a barra de menu
+
+		// adiciona itens na barra de menu
 		menuBar.add(mnUsuarios);
-		
-		
 
 	}
 

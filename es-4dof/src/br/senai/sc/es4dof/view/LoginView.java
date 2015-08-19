@@ -11,6 +11,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -79,6 +80,7 @@ public class LoginView extends JFrame {
 
 		btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				UsuarioDAO dao = new UsuarioDAO();
 
@@ -86,9 +88,20 @@ public class LoginView extends JFrame {
 					Usuario usuario = (Usuario) dao.getPorLogin(txtUsuario
 							.getText());
 
-					if (usuario.getSenha().equals(txtSenha.getText())) {
-						PrincipalView principal = new PrincipalView();
+					if(usuario != null) {
+						if (usuario.getSenha().equals(txtSenha.getText())) {
+								dispose();
+								PrincipalView principal = new PrincipalView();
+								principal.setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(null, "Senha inválida.");
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Dados inválidos.");
 					}
+					
+					
+						
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
