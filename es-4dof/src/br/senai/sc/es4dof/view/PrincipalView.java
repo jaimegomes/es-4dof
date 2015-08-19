@@ -22,7 +22,8 @@ public class PrincipalView extends JFrame {
 	private JPanel contentPane;
 	private JMenuBar menuBar;
 	private JMenu mnUsuarios;
-	private JMenuItem mnitCadastro;
+	private JMenuItem mnitCadastarUsuario;
+	private JMenuItem mnitConsultarUsuarios;
 
 	/**
 	 * Launch the application.
@@ -61,9 +62,9 @@ public class PrincipalView extends JFrame {
 		mnUsuarios.setIcon(new ImageIcon("images/usuario_16x16.png"));
 
 		// cria o menu item cadastro e adiciona funcionalidade ao clicar
-		mnitCadastro = new JMenuItem("Cadastro");
-		mnitCadastro.setIcon(new ImageIcon("images/add_16x16.png"));
-		mnitCadastro.addActionListener(new ActionListener() {
+		mnitCadastarUsuario = new JMenuItem("Cadastar");
+		mnitCadastarUsuario.setIcon(new ImageIcon("images/add_16x16.png"));
+		mnitCadastarUsuario.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -76,9 +77,28 @@ public class PrincipalView extends JFrame {
 
 			}
 		});
+		
+		mnitConsultarUsuarios = new JMenuItem("Consultar");
+		mnitConsultarUsuarios.setIcon(new ImageIcon("images/usuarios_16x16.png"));
+		mnitConsultarUsuarios.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CadUsuarioView cadUsuView = new CadUsuarioView(null, null);
+				cadUsuView.requestFocus(true);
+				cadUsuView.setFocusable(true);
+				cadUsuView.moveToFront();
+				getContentPane().add(cadUsuView, 0);
+				cadUsuView.setVisible(true);
+
+			}
+		});
+		
+		
 
 		// adiciona itens ao menu usuário
-		mnUsuarios.add(mnitCadastro);
+		mnUsuarios.add(mnitCadastarUsuario);
+		mnUsuarios.add(mnitConsultarUsuarios);
 
 		// adiciona itens na barra de menu
 		menuBar.add(mnUsuarios);
