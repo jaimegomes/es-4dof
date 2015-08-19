@@ -58,10 +58,11 @@ public class PrincipalView extends JFrame {
 
 		// cria o menu Usuários e adiciona o icone
 		mnUsuarios = new JMenu("Usuários");
-		mnUsuarios.setIcon(new ImageIcon("images/10680_16x16.png"));
+		mnUsuarios.setIcon(new ImageIcon("images/usuario_16x16.png"));
 
 		// cria o menu item cadastro e adiciona funcionalidade ao clicar
 		mnitCadastro = new JMenuItem("Cadastro");
+		mnitCadastro.setIcon(new ImageIcon("images/add_16x16.png"));
 		mnitCadastro.addActionListener(new ActionListener() {
 
 			@Override
