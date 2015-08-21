@@ -21,7 +21,7 @@ public class AConView extends JInternalFrame {
 		// adiciona botão de fechar na janela
 		setClosable(true);
 		// especifica o tamanho da tela
-		setBounds(15, 0, 708, 385);
+		setBounds(15, 0, 708, 388);
 
 	}
 

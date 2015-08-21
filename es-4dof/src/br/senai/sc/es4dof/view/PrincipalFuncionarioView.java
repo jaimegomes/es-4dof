@@ -2,11 +2,11 @@ package br.senai.sc.es4dof.view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +14,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class PrincipalFuncionarioView extends JFrame {
@@ -23,8 +24,6 @@ public class PrincipalFuncionarioView extends JFrame {
 	private static PrincipalFuncionarioView instancia;
 	private JPanel contentPane;
 	private JMenuBar menuBar;
-
-	private JLabel background;
 
 	private JMenu mnUsuarios;
 	private JMenuItem mnitCadastarUsuario;
@@ -39,6 +38,7 @@ public class PrincipalFuncionarioView extends JFrame {
 
 	private AgendarConsultaView agendarConsultaView;
 	private ListarConsutasView listarConsultaView;
+	private JLabel background;
 
 	/**
 	 * Launch the application.
@@ -59,19 +59,13 @@ public class PrincipalFuncionarioView extends JFrame {
 
 	public PrincipalFuncionarioView() throws Exception {
 
-		setExtendedState(Frame.MAXIMIZED_BOTH);
+		// setExtendedState(Frame.MAXIMIZED_BOTH);
 		setForeground(Color.BLUE);
 		setTitle("::ES-4DoF:: Enterprise System - 4 Do Fast");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		contentPane = new JPanel();
-//		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-
-		background = new JLabel();
-		background.setIcon(new ImageIcon("images/medicina.jpg"));
-
-		getContentPane().add(background);
+		setBounds(100, 100, 1200, 700);
+		setResizable(false);
+		setLocationRelativeTo(null);
 
 		// cria a barra de menu
 		menuBar = new JMenuBar();
@@ -95,12 +89,6 @@ public class PrincipalFuncionarioView extends JFrame {
 				getContentPane().add(cadUsuView, 0);
 				cadUsuView.setVisible(true);
 
-				if (agendarConsultaView != null)
-					agendarConsultaView.dispose();
-
-				if (listarConsultaView != null)
-					listarConsultaView.dispose();
-
 			}
 		});
 
@@ -117,13 +105,6 @@ public class PrincipalFuncionarioView extends JFrame {
 				conUsuView.moveToFront();
 				getContentPane().add(conUsuView, 0);
 				conUsuView.setVisible(true);
-
-				if (agendarConsultaView != null)
-					agendarConsultaView.dispose();
-
-				if (listarConsultaView != null)
-					listarConsultaView.dispose();
-
 			}
 		});
 
@@ -149,12 +130,6 @@ public class PrincipalFuncionarioView extends JFrame {
 				getContentPane().add(agendarConsultaView, 0);
 				agendarConsultaView.setVisible(true);
 
-				if (conUsuView != null)
-					conUsuView.dispose();
-
-				if (cadUsuView != null)
-					cadUsuView.dispose();
-
 			}
 		});
 
@@ -174,9 +149,6 @@ public class PrincipalFuncionarioView extends JFrame {
 				getContentPane().add(listarConsutaView, 0);
 				listarConsutaView.setVisible(true);
 
-				conUsuView.dispose();
-				cadUsuView.dispose();
-
 			}
 		});
 
@@ -187,6 +159,28 @@ public class PrincipalFuncionarioView extends JFrame {
 		// adiciona itens na barra de menu
 		menuBar.add(mnUsuarios);
 		menuBar.add(mnConsultas);
+
+		contentPane = new JPanel();
+//		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+
+		background = new JLabel();
+		background.setHorizontalAlignment(SwingConstants.CENTER);
+		background.setIcon(new ImageIcon("images/background_estetoscopio.jpg"));
+
+		getContentPane().add(background);
+
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(
+				Alignment.LEADING).addGroup(
+				gl_contentPane.createSequentialGroup().addComponent(background)
+						.addContainerGap(1164, Short.MAX_VALUE)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(
+				Alignment.LEADING).addGroup(
+				gl_contentPane.createSequentialGroup().addComponent(background)
+						.addContainerGap(625, Short.MAX_VALUE)));
+		contentPane.setLayout(gl_contentPane);
 
 	}
 
@@ -202,11 +196,4 @@ public class PrincipalFuncionarioView extends JFrame {
 	public static void setInstancia(PrincipalFuncionarioView instancia) {
 		PrincipalFuncionarioView.instancia = instancia;
 	}
-
-	public void ajustaFundo(String arquivo) {
-		JLabel fundo = new JLabel(new ImageIcon(arquivo));
-		fundo.setLayout(new FlowLayout());
-		setContentPane(fundo);
-	}
-
 }

@@ -42,7 +42,7 @@ public class ListarConsutasView extends AConView {
 	public ListarConsutasView(JTable tableRefresh) {
 		super(tableRefresh);
 
-		setTitle("Consulta Usuário");
+		setTitle("Consultas Agendadas");
 
 		// filtro de pesquisa
 		panel = new JPanel();
