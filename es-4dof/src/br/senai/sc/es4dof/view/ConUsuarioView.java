@@ -155,20 +155,6 @@ public class ConUsuarioView extends AConView {
 				"M\u00E9dico", "Funcion\u00E1rio", "Paciente" }));
 		cmbPerfil.setEnabled(false);
 
-		btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.setIcon(new ImageIcon("images/lupa_16x16.png"));
-		btnPesquisar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				String perfil = cmbPerfil.getSelectedItem() + "";
-				actionBtnPesquisar(txtCpf.getText(), txtEmail.getText(),
-						txtLogin.getText(), txtNome.getText(), perfil);
-
-			}
-		});
-
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setIcon(new ImageIcon("images/cancelar_16x16.png"));
 		btnCancelar.addActionListener(new ActionListener() {
@@ -206,22 +192,38 @@ public class ConUsuarioView extends AConView {
 		btnExcluir.setIcon(new ImageIcon("images/excluir_usuario_16x16.png"));
 
 		table = new JTable();
+		
+				btnPesquisar = new JButton("Pesquisar");
+				btnPesquisar.setIcon(new ImageIcon("images/lupa_16x16.png"));
+				btnPesquisar.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+
+						String perfil = cmbPerfil.getSelectedItem() + "";
+						actionBtnPesquisar(txtCpf.getText(), txtEmail.getText(),
+								txtLogin.getText(), txtNome.getText(), perfil);
+
+					}
+				});
 
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(table, GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
-						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnInserir, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnExcluir, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+							.addComponent(btnPesquisar, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+							.addGap(48)
 							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
@@ -236,7 +238,8 @@ public class ConUsuarioView extends AConView {
 						.addComponent(btnInserir)
 						.addComponent(btnEditar)
 						.addComponent(btnExcluir)
-						.addComponent(btnCancelar))
+						.addComponent(btnCancelar)
+						.addComponent(btnPesquisar))
 					.addContainerGap())
 		);
 
@@ -263,9 +266,7 @@ public class ConUsuarioView extends AConView {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(chckbxPerfil)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnPesquisar, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-						.addComponent(cmbPerfil, 0, 142, Short.MAX_VALUE))
+					.addComponent(cmbPerfil, 0, 132, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
@@ -283,8 +284,7 @@ public class ConUsuarioView extends AConView {
 						.addComponent(chckbxEmail)
 						.addComponent(chckbxLogin)
 						.addComponent(txtLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnPesquisar)))
+						.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 		);
 		panel.setLayout(gl_panel);
 		getContentPane().setLayout(groupLayout);

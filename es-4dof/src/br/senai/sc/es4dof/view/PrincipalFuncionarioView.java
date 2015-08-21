@@ -2,12 +2,14 @@ package br.senai.sc.es4dof.view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -22,6 +24,8 @@ public class PrincipalFuncionarioView extends JFrame {
 	private JPanel contentPane;
 	private JMenuBar menuBar;
 
+	private JLabel background;
+
 	private JMenu mnUsuarios;
 	private JMenuItem mnitCadastarUsuario;
 	private JMenuItem mnitListarUsuarios;
@@ -29,6 +33,12 @@ public class PrincipalFuncionarioView extends JFrame {
 	private JMenu mnConsultas;
 	private JMenuItem mnitAgendarConsulta;
 	private JMenuItem mnitListarConsultas;
+
+	private CadUsuarioView cadUsuView;
+	private ConUsuarioView conUsuView;
+
+	private AgendarConsultaView agendarConsultaView;
+	private ListarConsutasView listarConsultaView;
 
 	/**
 	 * Launch the application.
@@ -55,8 +65,13 @@ public class PrincipalFuncionarioView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+//		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+
+		background = new JLabel();
+		background.setIcon(new ImageIcon("images/medicina.jpg"));
+
+		getContentPane().add(background);
 
 		// cria a barra de menu
 		menuBar = new JMenuBar();
@@ -73,12 +88,18 @@ public class PrincipalFuncionarioView extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CadUsuarioView cadUsuView = new CadUsuarioView(null, null);
+				cadUsuView = new CadUsuarioView(null, null);
 				cadUsuView.requestFocus(true);
 				cadUsuView.setFocusable(true);
 				cadUsuView.moveToFront();
 				getContentPane().add(cadUsuView, 0);
 				cadUsuView.setVisible(true);
+
+				if (agendarConsultaView != null)
+					agendarConsultaView.dispose();
+
+				if (listarConsultaView != null)
+					listarConsultaView.dispose();
 
 			}
 		});
@@ -90,12 +111,18 @@ public class PrincipalFuncionarioView extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ConUsuarioView conUsuView = new ConUsuarioView(null);
+				conUsuView = new ConUsuarioView(null);
 				conUsuView.requestFocus(true);
 				conUsuView.setFocusable(true);
 				conUsuView.moveToFront();
 				getContentPane().add(conUsuView, 0);
 				conUsuView.setVisible(true);
+
+				if (agendarConsultaView != null)
+					agendarConsultaView.dispose();
+
+				if (listarConsultaView != null)
+					listarConsultaView.dispose();
 
 			}
 		});
@@ -115,12 +142,18 @@ public class PrincipalFuncionarioView extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AgendarConsultaView agendarConsutaView = new AgendarConsultaView(null, null);
-				agendarConsutaView.requestFocus(true);
-				agendarConsutaView.setFocusable(true);
-				agendarConsutaView.moveToFront();
-				getContentPane().add(agendarConsutaView, 0);
-				agendarConsutaView.setVisible(true);
+				agendarConsultaView = new AgendarConsultaView(null, null);
+				agendarConsultaView.requestFocus(true);
+				agendarConsultaView.setFocusable(true);
+				agendarConsultaView.moveToFront();
+				getContentPane().add(agendarConsultaView, 0);
+				agendarConsultaView.setVisible(true);
+
+				if (conUsuView != null)
+					conUsuView.dispose();
+
+				if (cadUsuView != null)
+					cadUsuView.dispose();
 
 			}
 		});
@@ -133,6 +166,16 @@ public class PrincipalFuncionarioView extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ListarConsutasView listarConsutaView = new ListarConsutasView(
+						null);
+				listarConsutaView.requestFocus(true);
+				listarConsutaView.setFocusable(true);
+				listarConsutaView.moveToFront();
+				getContentPane().add(listarConsutaView, 0);
+				listarConsutaView.setVisible(true);
+
+				conUsuView.dispose();
+				cadUsuView.dispose();
 
 			}
 		});
@@ -158,6 +201,12 @@ public class PrincipalFuncionarioView extends JFrame {
 
 	public static void setInstancia(PrincipalFuncionarioView instancia) {
 		PrincipalFuncionarioView.instancia = instancia;
+	}
+
+	public void ajustaFundo(String arquivo) {
+		JLabel fundo = new JLabel(new ImageIcon(arquivo));
+		fundo.setLayout(new FlowLayout());
+		setContentPane(fundo);
 	}
 
 }
