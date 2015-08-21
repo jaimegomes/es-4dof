@@ -23,6 +23,8 @@ import javax.swing.SwingConstants;
 import br.senai.sc.es4dof.controller.UsuarioController;
 import br.senai.sc.es4dof.model.Empresa;
 import br.senai.sc.es4dof.model.Usuario;
+import javax.swing.JEditorPane;
+import java.awt.Component;
 
 public class LoginView extends JFrame {
 
@@ -39,6 +41,7 @@ public class LoginView extends JFrame {
 	private JLabel lblEsdof;
 	private JComboBox cmbEmpresa;
 	private JLabel lblEmpresa;
+	private JLabel background;
 
 	/**
 	 * Launch the application.
@@ -64,6 +67,8 @@ public class LoginView extends JFrame {
 		setTitle("::ES-4DoF:: Enterprise System - 4 Do Fast");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
+		setLocationRelativeTo(null);
+		setLayout(null);
 
 		panel = new JPanel();
 
@@ -108,109 +113,68 @@ public class LoginView extends JFrame {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(
 				Alignment.LEADING).addComponent(panel,
 				GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE));
+		
+		background = new JLabel();
+		background.setHorizontalAlignment(SwingConstants.CENTER);
+//		background.setIcon(new ImageIcon("images/background_estetoscopio.jpg"));
 
 		gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel
-				.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-						gl_panel.createSequentialGroup()
-								.addContainerGap(107, Short.MAX_VALUE)
-								.addComponent(lblBemVindo).addGap(112))
-				.addGroup(
-						gl_panel.createSequentialGroup().addGap(159)
-								.addComponent(lblEsdof)
-								.addContainerGap(170, Short.MAX_VALUE))
-				.addGroup(
-						gl_panel.createSequentialGroup()
-								.addGap(55)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.TRAILING)
-												.addGroup(
-														gl_panel.createSequentialGroup()
-																.addGroup(
-																		gl_panel.createParallelGroup(
-																				Alignment.LEADING)
-																				.addComponent(
-																						lblSenha)
-																				.addComponent(
-																						lblUsuario))
-																.addGap(18))
-												.addGroup(
-														gl_panel.createSequentialGroup()
-																.addComponent(
-																		lblEmpresa)
-																.addPreferredGap(
-																		ComponentPlacement.RELATED)))
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.LEADING, false)
-												.addGroup(
-														gl_panel.createSequentialGroup()
-																.addComponent(
-																		txtSenha,
-																		GroupLayout.PREFERRED_SIZE,
-																		GroupLayout.DEFAULT_SIZE,
-																		GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(
-																		ComponentPlacement.RELATED)
-																.addComponent(
-																		btnOk))
-												.addComponent(
-														txtUsuario,
-														GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														cmbEmpresa,
-														0,
-														GroupLayout.DEFAULT_SIZE,
-														Short.MAX_VALUE))
-								.addContainerGap(77, Short.MAX_VALUE)));
-		gl_panel.setVerticalGroup(gl_panel
-				.createParallelGroup(Alignment.LEADING)
-				.addGroup(
-						gl_panel.createSequentialGroup()
-								.addGap(42)
-								.addComponent(lblBemVindo)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(lblEsdof)
-								.addGap(40)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.BASELINE)
-												.addComponent(
-														cmbEmpresa,
-														GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblEmpresa))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.BASELINE)
-												.addComponent(lblUsuario)
-												.addComponent(
-														txtUsuario,
-														GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.BASELINE)
-												.addComponent(
-														txtSenha,
-														GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblSenha)
-												.addComponent(
-														btnOk,
-														GroupLayout.PREFERRED_SIZE,
-														19,
-														GroupLayout.PREFERRED_SIZE))
-								.addContainerGap(75, Short.MAX_VALUE)));
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(107, Short.MAX_VALUE)
+					.addComponent(lblBemVindo)
+					.addGap(112))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(159)
+					.addComponent(lblEsdof)
+					.addContainerGap(170, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(55)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblSenha)
+								.addComponent(lblUsuario))
+							.addGap(18))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblEmpresa)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cmbEmpresa, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnOk)))
+					.addContainerGap(87, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(background)
+					.addContainerGap(394, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(background)
+					.addGap(27)
+					.addComponent(lblBemVindo)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblEsdof)
+					.addGap(40)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(cmbEmpresa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblEmpresa))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblUsuario)
+						.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblSenha)
+						.addComponent(btnOk, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(90, Short.MAX_VALUE))
+		);
 		panel.setLayout(gl_panel);
 		getContentPane().setLayout(groupLayout);
 
