@@ -1,25 +1,25 @@
-package br.senai.sc.es4dof.dao;
+package br.senai.sc.es4dof.controller;
 
 import java.util.List;
 
 import br.senai.sc.es4dof.abstracts.Entidade;
-import br.senai.sc.es4dof.abstracts.GenericDAO;
+import br.senai.sc.es4dof.interfaces.IController;
 
-public class UsuarioDAO extends GenericDAO{
+public class EmpresaController implements IController {
 
 	@Override
 	public void salvar(Entidade entidade) throws Exception {
-		
+
 	}
 
 	@Override
 	public void excluir(Entidade entidade) throws Exception {
-		
+
 	}
 
 	@Override
 	public void editar(Entidade entidade) throws Exception {
-		
+
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class UsuarioDAO extends GenericDAO{
 		return null;
 	}
 	
-	public Entidade getPorLoginEmpresa(String login, Entidade entidade) throws Exception {
+	public Entidade getPorRazaoSocial(String razaoSocial) throws Exception {
 		return null;
 	}
 

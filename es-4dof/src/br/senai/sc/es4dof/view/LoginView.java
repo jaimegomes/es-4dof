@@ -8,7 +8,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,7 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import br.senai.sc.es4dof.dao.UsuarioDAO;
+import br.senai.sc.es4dof.controller.UsuarioController;
+import br.senai.sc.es4dof.model.Empresa;
 import br.senai.sc.es4dof.model.Usuario;
 
 public class LoginView extends JFrame {
@@ -34,6 +37,8 @@ public class LoginView extends JFrame {
 	private GroupLayout groupLayout;
 	private GroupLayout gl_panel;
 	private JLabel lblEsdof;
+	private JComboBox cmbEmpresa;
+	private JLabel lblEmpresa;
 
 	/**
 	 * Launch the application.
@@ -54,10 +59,11 @@ public class LoginView extends JFrame {
 
 	public LoginView() throws Exception {
 
-		setBounds(300, 300, 400, 300);
+		setBounds(500, 200, 400, 300);
 		setForeground(Color.BLUE);
 		setTitle("::ES-4DoF:: Enterprise System - 4 Do Fast");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 
 		panel = new JPanel();
 
@@ -67,6 +73,10 @@ public class LoginView extends JFrame {
 
 		lblEsdof = new JLabel("ES-4DoF");
 		lblEsdof.setFont(new Font("Dialog", Font.BOLD, 14));
+
+		cmbEmpresa = new JComboBox();
+
+		lblEmpresa = new JLabel("Empresa:");
 
 		lblUsuario = new JLabel("Usu\u00E1rio:");
 
@@ -79,32 +89,14 @@ public class LoginView extends JFrame {
 		txtSenha.setColumns(10);
 
 		btnOk = new JButton("OK");
+		btnOk.setIcon(new ImageIcon("images/ok_16x16.png"));
 		btnOk.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				UsuarioDAO dao = new UsuarioDAO();
 
-				try {
-					Usuario usuario = (Usuario) dao.getPorLogin(txtUsuario
-							.getText());
+				Empresa empresa = (Empresa) cmbEmpresa.getSelectedItem();
 
-					if(usuario != null) {
-						if (usuario.getSenha().equals(txtSenha.getText())) {
-								dispose();
-								PrincipalView principal = new PrincipalView();
-								principal.setVisible(true);
-						} else {
-							JOptionPane.showMessageDialog(null, "Senha inválida.");
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Dados inválidos.");
-					}
-					
-					
-						
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
+				actionBtnOk(txtUsuario.getText(), txtSenha.getText(), empresa);
 
 			}
 		});
@@ -122,37 +114,59 @@ public class LoginView extends JFrame {
 				.createParallelGroup(Alignment.LEADING)
 				.addGroup(
 						gl_panel.createSequentialGroup()
-								.addGap(65)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.LEADING)
-												.addComponent(lblUsuario)
-												.addComponent(lblSenha))
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addGroup(
-										gl_panel.createParallelGroup(
-												Alignment.LEADING)
-												.addComponent(
-														txtSenha,
-														GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														txtUsuario,
-														GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(btnOk)
-								.addContainerGap(77, Short.MAX_VALUE))
-				.addGroup(
-						gl_panel.createSequentialGroup()
 								.addContainerGap(107, Short.MAX_VALUE)
 								.addComponent(lblBemVindo).addGap(112))
 				.addGroup(
 						gl_panel.createSequentialGroup().addGap(159)
 								.addComponent(lblEsdof)
-								.addContainerGap(178, Short.MAX_VALUE)));
+								.addContainerGap(170, Short.MAX_VALUE))
+				.addGroup(
+						gl_panel.createSequentialGroup()
+								.addGap(55)
+								.addGroup(
+										gl_panel.createParallelGroup(
+												Alignment.TRAILING)
+												.addGroup(
+														gl_panel.createSequentialGroup()
+																.addGroup(
+																		gl_panel.createParallelGroup(
+																				Alignment.LEADING)
+																				.addComponent(
+																						lblSenha)
+																				.addComponent(
+																						lblUsuario))
+																.addGap(18))
+												.addGroup(
+														gl_panel.createSequentialGroup()
+																.addComponent(
+																		lblEmpresa)
+																.addPreferredGap(
+																		ComponentPlacement.RELATED)))
+								.addGroup(
+										gl_panel.createParallelGroup(
+												Alignment.LEADING, false)
+												.addGroup(
+														gl_panel.createSequentialGroup()
+																.addComponent(
+																		txtSenha,
+																		GroupLayout.PREFERRED_SIZE,
+																		GroupLayout.DEFAULT_SIZE,
+																		GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(
+																		ComponentPlacement.RELATED)
+																.addComponent(
+																		btnOk))
+												.addComponent(
+														txtUsuario,
+														GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(
+														cmbEmpresa,
+														0,
+														GroupLayout.DEFAULT_SIZE,
+														Short.MAX_VALUE))
+								.addContainerGap(77, Short.MAX_VALUE)));
 		gl_panel.setVerticalGroup(gl_panel
 				.createParallelGroup(Alignment.LEADING)
 				.addGroup(
@@ -161,7 +175,17 @@ public class LoginView extends JFrame {
 								.addComponent(lblBemVindo)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(lblEsdof)
-								.addGap(38)
+								.addGap(40)
+								.addGroup(
+										gl_panel.createParallelGroup(
+												Alignment.BASELINE)
+												.addComponent(
+														cmbEmpresa,
+														GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblEmpresa))
+								.addPreferredGap(ComponentPlacement.RELATED)
 								.addGroup(
 										gl_panel.createParallelGroup(
 												Alignment.BASELINE)
@@ -174,25 +198,74 @@ public class LoginView extends JFrame {
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addGroup(
 										gl_panel.createParallelGroup(
-												Alignment.LEADING)
+												Alignment.BASELINE)
+												.addComponent(
+														txtSenha,
+														GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblSenha)
 												.addComponent(
 														btnOk,
 														GroupLayout.PREFERRED_SIZE,
 														19,
-														GroupLayout.PREFERRED_SIZE)
-												.addGroup(
-														gl_panel.createParallelGroup(
-																Alignment.BASELINE)
-																.addComponent(
-																		lblSenha)
-																.addComponent(
-																		txtSenha,
-																		GroupLayout.PREFERRED_SIZE,
-																		GroupLayout.DEFAULT_SIZE,
-																		GroupLayout.PREFERRED_SIZE)))
-								.addContainerGap(109, Short.MAX_VALUE)));
+														GroupLayout.PREFERRED_SIZE))
+								.addContainerGap(75, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
 		getContentPane().setLayout(groupLayout);
+
+	}
+
+	/**
+	 * Método que executa a ação do botão ok.
+	 * 
+	 * @param text
+	 */
+	private void actionBtnOk(String login, String senha, Empresa empresa) {
+		UsuarioController controller = new UsuarioController();
+
+		try {
+			Usuario usuario = (Usuario) controller.getPorLoginEmpresa(login,
+					empresa);
+
+			if (usuario != null) {
+				if (usuario.getSenha().equals(txtSenha.getText())) {
+
+					dispose();
+
+					switch (usuario.getPerfil()) {
+					case "Médico":
+						PrincipalMedicoView principalMedico = new PrincipalMedicoView();
+						principalMedico.setVisible(true);
+						break;
+
+					case "Funcionário":
+						PrincipalFuncionarioView principalFuncionario = new PrincipalFuncionarioView();
+						principalFuncionario.setVisible(true);
+						break;
+
+					case "Paciente":
+						PrincipalPacienteView principalPaciente = new PrincipalPacienteView();
+						principalPaciente.setVisible(true);
+						break;
+
+					default:
+						break;
+					}
+
+				} else {
+
+					JOptionPane.showMessageDialog(null, "Senha inválida.");
+					txtSenha.setText("");
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Dados inválidos.");
+				txtSenha.setText("");
+			}
+
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 
 	}
 }

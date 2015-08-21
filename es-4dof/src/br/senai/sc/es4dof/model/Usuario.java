@@ -2,12 +2,19 @@ package br.senai.sc.es4dof.model;
 
 import br.senai.sc.es4dof.abstracts.Entidade;
 
+/**
+ * Classe que representa a entidade Usuario no banco de dados
+ * 
+ * @author Jaime Gomes
+ *
+ */
 public class Usuario extends Entidade {
 
 	private int id;
 	private String login;
 	private String senha;
-	private String tipo;
+	private String perfil;
+	private Empresa empresa;
 
 	/**
 	 * Construtor padrão
@@ -21,10 +28,11 @@ public class Usuario extends Entidade {
 	 * @param login
 	 * @param senha
 	 */
-	public Usuario(String login, String senha, String tipo) {
+	public Usuario(String login, String senha, String perfil, Empresa empresa) {
 		this.login = login;
 		this.senha = senha;
-		this.tipo = tipo;
+		this.perfil = perfil;
+		this.empresa = empresa;
 	}
 
 	/**
@@ -34,11 +42,11 @@ public class Usuario extends Entidade {
 	 * @param login
 	 * @param senha
 	 */
-	public Usuario(int id, String login, String senha, String tipo) {
+	public Usuario(int id, String login, String senha, String perfil) {
 		this.id = id;
 		this.login = login;
 		this.senha = senha;
-		this.tipo = tipo;
+		this.perfil = perfil;
 	}
 
 	@Override
@@ -91,22 +99,37 @@ public class Usuario extends Entidade {
 	}
 
 	/**
-	 * Método que retorna o tipo de usuário.
+	 * Método que retorna o perfil de usuário.
 	 * 
-	 * @return the tipo
+	 * @return the perfil
 	 */
-	public String getTipo() {
-		return tipo;
+	public String getPerfil() {
+		return perfil;
 	}
 
 	/**
-	 * Método que seta o tipo de usuário
+	 * Método que seta o perfil de usuário
 	 * 
-	 * @param tipo
-	 *            the tipo to set
+	 * @param perfil
+	 *            the perfil to set
 	 */
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
+	}
+
+	/**
+	 * @return the empresa
+	 */
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	/**
+	 * @param empresa
+	 *            the empresa to set
+	 */
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 
 }

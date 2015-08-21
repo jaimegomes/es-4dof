@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.senai.sc.es4dof.abstracts.Entidade;
 import br.senai.sc.es4dof.interfaces.IController;
+import br.senai.sc.es4dof.model.Empresa;
 
 public class UsuarioController implements IController {
 
@@ -32,7 +33,7 @@ public class UsuarioController implements IController {
 		return null;
 	}
 
-	public Entidade getPorLogin(String login) throws Exception {
+	public Entidade getPorLoginEmpresa(String login, Entidade entidade) throws Exception {
 		return null;
 	}
 

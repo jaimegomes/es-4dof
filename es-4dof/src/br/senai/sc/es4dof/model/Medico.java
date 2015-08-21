@@ -11,7 +11,6 @@ import java.util.Date;
 public class Medico extends Pessoa {
 
 	private String crm;
-	private Especialidade especialidade;
 
 	/**
 	 * Construtor padrão.
@@ -30,14 +29,11 @@ public class Medico extends Pessoa {
 	 * @param dataNascimento
 	 * @param usuario
 	 * @param crm
-	 * @param especialidade
 	 */
 	public Medico(String nome, String telefone, String cpf, String endereco,
-			String email, Date dataNascimento, Usuario usuario, String crm,
-			Especialidade especialidade) {
+			String email, Date dataNascimento, Usuario usuario, String crm) {
 		super(nome, telefone, cpf, endereco, email, dataNascimento, usuario);
 		this.crm = crm;
-		this.especialidade = especialidade;
 	}
 
 	/**
@@ -52,14 +48,12 @@ public class Medico extends Pessoa {
 	 * @param dataNascimento
 	 * @param usuario
 	 * @param crm
-	 * @param especialidade
 	 */
 	public Medico(int id, String nome, String telefone, String cpf,
 			String endereco, String email, Date dataNascimento,
-			Usuario usuario, String crm, Especialidade especialidade) {
+			Usuario usuario, String crm) {
 		super(id, nome, telefone, cpf, endereco, email, dataNascimento, usuario);
 		this.crm = crm;
-		this.especialidade = especialidade;
 	}
 
 	/**
@@ -79,25 +73,6 @@ public class Medico extends Pessoa {
 	 */
 	public void setCrm(String crm) {
 		this.crm = crm;
-	}
-
-	/**
-	 * Método que retorna a especialidade
-	 * 
-	 * @return the especialidade
-	 */
-	public Especialidade getEspecialidade() {
-		return especialidade;
-	}
-
-	/**
-	 * Método que seta a especialidade
-	 * 
-	 * @param especialidade
-	 *            the especialidade to set
-	 */
-	public void setEspecialidade(Especialidade especialidade) {
-		this.especialidade = especialidade;
 	}
 
 }
