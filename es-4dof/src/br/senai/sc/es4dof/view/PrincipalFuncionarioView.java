@@ -59,7 +59,6 @@ public class PrincipalFuncionarioView extends JFrame {
 
 	public PrincipalFuncionarioView() throws Exception {
 
-		// setExtendedState(Frame.MAXIMIZED_BOTH);
 		setForeground(Color.BLUE);
 		setTitle("::ES-4DoF:: Enterprise System - 4 Do Fast");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

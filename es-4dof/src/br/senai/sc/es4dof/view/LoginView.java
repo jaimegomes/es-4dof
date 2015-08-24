@@ -2,12 +2,9 @@ package br.senai.sc.es4dof.view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,14 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SwingConstants;
 
 import br.senai.sc.es4dof.controller.UsuarioController;
 import br.senai.sc.es4dof.model.Empresa;
 import br.senai.sc.es4dof.model.Usuario;
-import javax.swing.JEditorPane;
-import java.awt.Component;
 
 public class LoginView extends JFrame {
 
@@ -36,12 +29,9 @@ public class LoginView extends JFrame {
 	private JTextField txtUsuario;
 	private JPasswordField txtSenha;
 	private JButton btnOk;
-	private GroupLayout groupLayout;
-	private GroupLayout gl_panel;
-	private JLabel lblEsdof;
 	private JComboBox cmbEmpresa;
 	private JLabel lblEmpresa;
-	private JLabel background;
+	private JLabel lblBackground;
 
 	/**
 	 * Launch the application.
@@ -62,121 +52,64 @@ public class LoginView extends JFrame {
 
 	public LoginView() throws Exception {
 
-		setBounds(500, 200, 400, 300);
+		lblEmpresa = new javax.swing.JLabel();
+		cmbEmpresa = new javax.swing.JComboBox();
+		lblUsuario = new javax.swing.JLabel();
+		txtUsuario = new javax.swing.JTextField();
+		lblSenha = new javax.swing.JLabel();
+		txtSenha = new javax.swing.JPasswordField();
+		btnOk = new javax.swing.JButton();
+		lblBackground = new javax.swing.JLabel();
+
 		setForeground(Color.BLUE);
 		setTitle("::ES-4DoF:: Enterprise System - 4 Do Fast");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1200, 622);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setLayout(null);
 
-		panel = new JPanel();
+		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 
-		lblBemVindo = new JLabel("Bem Vindo ao Sistema");
-		lblBemVindo.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblBemVindo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEmpresa.setText("Empresa:");
+		getContentPane().add(lblEmpresa);
+		lblEmpresa.setBounds(450, 430, 70, 15);
 
-		lblEsdof = new JLabel("ES-4DoF");
-		lblEsdof.setFont(new Font("Dialog", Font.BOLD, 14));
+		cmbEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
+				"Item 1", "Item 2", "Item 3", "Item 4" }));
+		getContentPane().add(cmbEmpresa);
+		cmbEmpresa.setBounds(530, 420, 140, 24);
 
-		cmbEmpresa = new JComboBox();
+		lblUsuario.setText("Usuário:");
+		getContentPane().add(lblUsuario);
+		lblUsuario.setBounds(450, 457, 70, 15);
+		getContentPane().add(txtUsuario);
+		txtUsuario.setBounds(530, 455, 140, 19);
 
-		lblEmpresa = new JLabel("Empresa:");
+		lblSenha.setText("Senha:");
+		getContentPane().add(lblSenha);
+		lblSenha.setBounds(450, 485, 50, 15);
+		getContentPane().add(txtSenha);
+		txtSenha.setBounds(530, 483, 140, 19);
 
-		lblUsuario = new JLabel("Usu\u00E1rio:");
-
-		lblSenha = new JLabel("Senha:");
-
-		txtUsuario = new JTextField();
-		txtUsuario.setColumns(10);
-
-		txtSenha = new JPasswordField();
-		txtSenha.setColumns(10);
-
-		btnOk = new JButton("OK");
+		btnOk.setText("OK");
+		getContentPane().add(btnOk);
+		btnOk.setBounds(682, 483, 88, 19);
 		btnOk.setIcon(new ImageIcon("images/ok_16x16.png"));
 		btnOk.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				Empresa empresa = (Empresa) cmbEmpresa.getSelectedItem();
-
-				actionBtnOk(txtUsuario.getText(), txtSenha.getText(), empresa);
+				actionBtnOk(txtUsuario.getText(), txtSenha.getText(),
+						(Empresa) cmbEmpresa.getSelectedItem());
 
 			}
 		});
 
-		groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(
-				Alignment.LEADING).addComponent(panel,
-				GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(
-				Alignment.LEADING).addComponent(panel,
-				GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE));
-		
-		background = new JLabel();
-		background.setHorizontalAlignment(SwingConstants.CENTER);
-//		background.setIcon(new ImageIcon("images/background_estetoscopio.jpg"));
-
-		gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(107, Short.MAX_VALUE)
-					.addComponent(lblBemVindo)
-					.addGap(112))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(159)
-					.addComponent(lblEsdof)
-					.addContainerGap(170, Short.MAX_VALUE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(55)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblSenha)
-								.addComponent(lblUsuario))
-							.addGap(18))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblEmpresa)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cmbEmpresa, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnOk)))
-					.addContainerGap(87, Short.MAX_VALUE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addComponent(background)
-					.addContainerGap(394, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addComponent(background)
-					.addGap(27)
-					.addComponent(lblBemVindo)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEsdof)
-					.addGap(40)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(cmbEmpresa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblEmpresa))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblUsuario)
-						.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblSenha)
-						.addComponent(btnOk, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(90, Short.MAX_VALUE))
-		);
-		panel.setLayout(gl_panel);
-		getContentPane().setLayout(groupLayout);
+		lblBackground.setIcon(new javax.swing.ImageIcon(
+				"/home/jaime/Área de Trabalho/background.png")); // NOI18N
+		getContentPane().add(lblBackground);
+		lblBackground.setBounds(0, 0, 1200, 622);
 
 	}
 
